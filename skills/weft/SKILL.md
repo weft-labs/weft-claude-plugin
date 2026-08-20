@@ -5,9 +5,8 @@ description: Use the Weft wallet to search the agent web and pay any x402 or MPP
 
 # Weft
 
-Weft is a self-custodial agent wallet for paying x402/MPP-protected
-endpoints from inside Claude Code. Three tools: `weft_balance`,
-`weft_search`, `weft_fetch`.
+Weft gives agents a wallet for paying x402/MPP-protected endpoints from inside
+Claude Code. Three tools: `weft_balance`, `weft_search`, `weft_fetch`.
 
 ## Setup
 
