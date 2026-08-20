@@ -4,7 +4,7 @@ description: Check the Weft wallet balance and spending policy
 
 Check the user's Weft wallet now with `weft_balance`, then report:
 
-- Available USDC (and promo credit, if any)
+- Available wallet USDC
 - Spending-policy caps and spent-today / spent-week totals
 - Headroom: how many typical paid fetches the remaining balance covers
 

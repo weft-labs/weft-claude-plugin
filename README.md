@@ -33,8 +33,11 @@ The plugin bundles the Weft MCP server. On first tool use, Claude redirects
 you to Weft to sign in once — no keys to paste. The connection grant appears
 under **Settings → Connections** and is revocable at any time.
 
-New to Weft? Sign up at [weft.network](https://weft.network) — every account
-gets a buyer wallet. API reference: [weft.network/docs](https://weft.network/docs).
+New to Weft? Create an account at [weft.network](https://weft.network), then
+retry the tool and sign in through the first-use browser flow. A new account
+gets a buyer wallet with no promotional balance, free credit, or subsidy, so
+fund it before the first paid fetch. API reference:
+[weft.network/docs](https://weft.network/docs).
 
 ## Cost discipline
 

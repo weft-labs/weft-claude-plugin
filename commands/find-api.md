@@ -10,11 +10,13 @@ Search the agent web for paid endpoints matching: $ARGUMENTS
    type, or payment protocol.
 2. Present the top results as a table: name, price per call, type, protocol,
    and one line on what it returns.
-3. Recommend one result and say why. Quote its exact price.
-4. Ask the user before paying. On approval, call `weft_fetch` on the result
-   URL with a tight `max_cost_usd` (the quoted price plus a small margin,
-   never more), passing `search_id`, `operation_id`, and `access_method_id`
-   from the search response for attribution.
+3. Recommend one result and say why. Quote its exact price and the exact
+   `max_cost_usd` ceiling you propose.
+4. Ask the user to approve that ceiling before paying. On approval, call
+   `weft_fetch` on the result URL with that exact ceiling, passing `search_id`,
+   `operation_id`, and `access_method_id` from the search response for
+   attribution. If the live challenge is higher, stop and ask again with the
+   new ceiling.
 5. Summarize what came back and what it cost (`paid_usd + held_usd`).
 
 Never guess endpoint paths — only fetch URLs returned by `weft_search`. If no
