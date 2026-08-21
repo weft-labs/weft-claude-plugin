@@ -1,0 +1,36 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash --noprofile --norc -euo pipefail {0}
+
+jobs:
+  plugin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate plugin
+        run: |
+          npx --yes @anthropic-ai/claude-code@2.1.238 plugin validate --strict .
+          jq empty .claude-plugin/plugin.json .claude-plugin/marketplace.json .mcp.json
+          test "$(sed -n '2p' skills/weft/SKILL.md)" = "name: weft"
+          test "$(sed -n '2p' commands/balance.md)" = "description: Check the Weft wallet balance and spending policy"
+          test "$(sed -n '2p' commands/find-api.md)" = "description: Find paid APIs and data endpoints for a task via Weft search"
+          test "$(jq -r '.mcpServers.weft.url' .mcp.json)" = "https://weft.network/mcp"
+      - name: Check Markdown links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --max-retries 3 README.md skills/**/*.md commands/*.md

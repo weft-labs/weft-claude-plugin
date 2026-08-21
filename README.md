@@ -12,6 +12,10 @@ x402/MPP endpoint from your Weft wallet — without leaving the conversation.
 | Command `/weft:find-api` | `/weft:find-api <need>` | Discover paid endpoints for a task, then fetch with your approval |
 | MCP connector | bundled | Points at the hosted Weft MCP server (`https://weft.network/mcp`) |
 
+The plugin owns the MCP-first `weft` Skill. It is distinct from the
+shell-based `weft-cli` Skill distributed with `@weft-labs/cli` and the hosted
+`weft-mcp` usage Skill.
+
 ## Install
 
 From a marketplace (once listed in the Anthropic community marketplace):
@@ -33,8 +37,11 @@ The plugin bundles the Weft MCP server. On first tool use, Claude redirects
 you to Weft to sign in once — no keys to paste. The connection grant appears
 under **Settings → Connections** and is revocable at any time.
 
-New to Weft? Sign up at [weft.network](https://weft.network) — every account
-gets a buyer wallet. API reference: [weft.network/docs](https://weft.network/docs).
+New to Weft? Create an account at [weft.network](https://weft.network), then
+retry the tool and sign in through the first-use browser flow. A new account
+gets a buyer wallet with no promotional balance, free credit, or subsidy, so
+fund it before the first paid fetch. API reference:
+[weft.network/docs](https://weft.network/docs).
 
 ## Cost discipline
 
