@@ -12,6 +12,10 @@ x402/MPP endpoint from your Weft wallet — without leaving the conversation.
 | Command `/weft:find-api` | `/weft:find-api <need>` | Discover paid endpoints for a task, then fetch with your approval |
 | MCP connector | bundled | Points at the hosted Weft MCP server (`https://weft.network/mcp`) |
 
+The plugin owns the MCP-first `weft` Skill. It is distinct from the
+shell-based `weft-cli` Skill distributed with `@weft-labs/cli` and the hosted
+`weft-mcp` usage Skill.
+
 ## Install
 
 From a marketplace (once listed in the Anthropic community marketplace):

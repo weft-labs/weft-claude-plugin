@@ -5,6 +5,11 @@ description: Use the Weft wallet to search the agent web and pay any x402 or MPP
 
 # Weft
 
+This `weft` Skill belongs to the Claude plugin and uses its bundled MCP server.
+It is separate from the shell-based `weft-cli` Skill installed by
+`@weft-labs/cli` and the hosted `weft-mcp` usage Skill. Do not use CLI setup
+instructions to configure this plugin.
+
 Weft gives agents a wallet for paying x402/MPP-protected endpoints from inside
 Claude Code. Three tools: `weft_balance`, `weft_search`, `weft_fetch`.
 
