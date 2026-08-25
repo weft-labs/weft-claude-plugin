@@ -10,6 +10,7 @@ x402/MPP endpoint from your Weft wallet — without leaving the conversation.
 | Skill `weft` | model-invoked | Teaches Claude the balance → search → paid-fetch loop, receipt reading, and error handling |
 | Command `/weft:balance` | `/weft:balance` | Wallet balance + spending-policy snapshot |
 | Command `/weft:find-api` | `/weft:find-api <need>` | Discover paid endpoints for a task, then fetch with your approval |
+| Command `/weft:setup` | `/weft:setup <email\|oauth>` | Create a temporary account or return to existing-account OAuth |
 | MCP connector | bundled | Points at the hosted Weft MCP server (`https://weft.network/mcp`) |
 
 The plugin owns the MCP-first `weft` Skill. It is distinct from the
@@ -33,12 +34,29 @@ Or directly from this repo:
 
 ## First run
 
-The plugin bundles the Weft MCP server. On first tool use, Claude redirects
-you to Weft to sign in once — no keys to paste. The connection grant appears
-under **Settings → Connections** and is revocable at any time.
+This plugin is the explicit MCP setup path. It does not install the Weft CLI.
 
-New to Weft? Create an account at [weft.network](https://weft.network), then
-retry the tool and sign in through the first-use browser flow. A new account
+Already have an account:
+
+```
+/weft:setup oauth
+```
+
+Restart Claude Code and call a Weft tool. Claude opens browser OAuth; no key is
+pasted, and the grant is revocable under **Settings → Connections**.
+
+No account yet:
+
+```
+/weft:setup you@example.com
+```
+
+The command creates a 30-minute temporary connection, stores its credential in
+Claude's private plugin-data directory, and prints only claim metadata. Claim
+the email and restart Claude Code. Search works before claim; the same
+connection gains balance and fetch after claim.
+
+Temporary-header support requires Claude Code 2.1.195 or later. A new account
 gets a buyer wallet with no promotional balance, free credit, or subsidy, so
 fund it before the first paid fetch. API reference:
 [weft.network/docs](https://weft.network/docs).
@@ -49,6 +67,15 @@ Paid fetches spend real USDC from your wallet, always inside your spending
 policy. The skill enforces a balance check before paid actions, tight
 `max_cost_usd` ceilings, and explicit user approval before the first paid
 call in `/weft:find-api`.
+
+## Release
+
+1. Set the same semantic version in `.claude-plugin/plugin.json` and
+   `.claude-plugin/marketplace.json`.
+2. Run `bash tests/plugin_test.sh` and
+   `npx --yes @anthropic-ai/claude-code@2.1.238 plugin validate --strict .`.
+3. Merge the reviewed PR, then tag that merge as `v<version>` and create the
+   matching GitHub release. Do not tag a feature branch.
 
 ## License
 

@@ -10,7 +10,7 @@
       "name": "weft",
       "source": "./",
       "description": "Search the agent web and pay any x402 endpoint from your Weft wallet",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": { "name": "Weft Labs", "url": "https://weft.network" },
       "homepage": "https://weft.network/docs",
       "keywords": ["weft", "x402", "mpp", "search", "paid-apis", "wallet"],
