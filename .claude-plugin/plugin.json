@@ -1,7 +1,7 @@
 {
   "name": "weft",
   "description": "Search the agent web and pay any x402 endpoint from your Weft wallet",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": {
     "name": "Weft Labs",
     "url": "https://weft.network"

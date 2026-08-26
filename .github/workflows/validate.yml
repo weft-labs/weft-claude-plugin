@@ -36,7 +36,15 @@ jobs:
           test -x scripts/mcp-headers.sh
           test -x tests/plugin_test.sh
           bash tests/plugin_test.sh
+      - name: Check skill drift against weft-labs/skills
+        run: |
+          ref=$(cat SKILLS_REF)
+          git clone https://github.com/weft-labs/skills "$RUNNER_TEMP/canonical-skills"
+          git -C "$RUNNER_TEMP/canonical-skills" -c advice.detachedHead=false checkout "$ref"
+          diff -r "$RUNNER_TEMP/canonical-skills/skills/weft" skills/weft
       - name: Check Markdown links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --max-retries 3 README.md skills/**/*.md commands/*.md
+          # skills/ is vendored byte-identical from weft-labs/skills (drift
+          # check above); its links are upstream's responsibility.
+          args: --no-progress --max-retries 3 README.md commands/*.md

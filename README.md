@@ -13,9 +13,12 @@ x402/MPP endpoint from your Weft wallet — without leaving the conversation.
 | Command `/weft:setup` | `/weft:setup <email\|oauth>` | Create a temporary account or return to existing-account OAuth |
 | MCP connector | bundled | Points at the hosted Weft MCP server (`https://weft.network/mcp`) |
 
-The plugin owns the MCP-first `weft` Skill. It is distinct from the
-shell-based `weft-cli` Skill distributed with `@weft-labs/cli` and the hosted
-`weft-mcp` usage Skill.
+The `weft` Skill is vendored byte-identical from
+[weft-labs/skills](https://github.com/weft-labs/skills) at the commit pinned
+in [`SKILLS_REF`](SKILLS_REF); CI fails on any drift. To update it, copy
+`skills/weft/` from the new upstream commit and set that SHA in `SKILLS_REF`.
+Plugin-specific setup guidance lives in `commands/setup.md` and this README,
+never inside `skills/weft/`.
 
 ## Install
 
