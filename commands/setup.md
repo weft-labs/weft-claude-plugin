@@ -26,7 +26,21 @@ all other input. Run the bootstrap script with the exact validated email:
 ```
 
 The script stores the `wbt_` credential with mode 0600 and prints only safe
-claim metadata. Never read, print, paste, or commit the credential file. Tell
-the user to claim the email and restart Claude Code. After restart, call
-`weft_connection_status`: search works while pending; balance and fetch start
-on the same connection after claim.
+claim metadata. Never read, print, paste, or commit the credential file. Never
+ask for a password or ask the human to paste a `wk_`, `wbt_`, or OAuth
+credential. Tell the user to claim the email and restart Claude Code. After
+restart, call `weft_connection_status`: search works while pending; balance
+and fetch start on the same connection after claim.
+
+A new account gets a wallet but no promotional balance, free credit, or
+subsidy. The human must fund the wallet before the first paid fetch.
+
+Troubleshooting:
+
+- `weft_*` tools missing after restart: tell the human to open `/plugin`,
+  confirm that `weft` is installed and enabled, restart Claude Code, and
+  retry. Do not add a second manual MCP connection beside the plugin's
+  bundled server.
+- Temporary connection returns unauthorized: it expired or was declined. Run
+  `/weft:setup THEIR_EMAIL` to replace it, or `/weft:setup oauth` to clear it
+  and return to existing-account OAuth after restart.
