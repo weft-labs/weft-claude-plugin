@@ -11,20 +11,28 @@ It is separate from the shell-based `weft-cli` Skill installed by
 instructions to configure this plugin.
 
 Weft gives agents a wallet for paying x402/MPP-protected endpoints from inside
-Claude Code. Three tools: `weft_balance`, `weft_search`, `weft_fetch`.
+Claude Code. Four tools: `weft_balance`, `weft_search`, `weft_fetch`, and
+`weft_connection_status`.
 
 ## Setup
 
-This plugin bundles the Weft MCP server (`https://weft.network/mcp`), so the
-tools appear once the plugin is enabled. On first tool use Claude redirects
-to Weft to sign in once — nothing to paste; the grant shows up under
-Connections and is revocable.
+Installing this plugin is an explicit MCP choice. Do not install the CLI or add
+a second MCP server.
 
-The MCP authorization flow signs in an existing account. If the human has no
-account, direct them to create one at `https://weft.network`, then retry the
-tool and sign in. Never ask for their password, API key, or OAuth token. A new
-account gets a wallet but no promotional balance, free credit, or subsidy. The
-human must fund the wallet before the first paid fetch.
+This plugin bundles the Weft MCP server (`https://weft.network/mcp`). Existing
+account: run `/weft:setup oauth`, restart Claude Code, then call a tool. Claude
+opens browser OAuth; the revocable grant appears under Connections.
+
+No account: ask the human for their email address, then run
+`/weft:setup THEIR_EMAIL`. The command stores a temporary `wbt_` credential in
+the plugin's private persistent data and never prints it. The human claims the
+email and restarts Claude Code. `weft_search` works while pending;
+`weft_connection_status` reports progress; the same connection gains balance
+and fetch after claim. Never ask for a password or ask the human to paste a
+credential.
+
+A new account gets a wallet but no promotional balance, free credit, or
+subsidy. The human must fund the wallet before the first paid fetch.
 
 If the `weft_*` tools are still missing, tell the human to open `/plugin`,
 confirm that `weft` is installed and enabled, restart Claude Code, and retry.
@@ -52,6 +60,9 @@ Do not add a second manual MCP connection beside the plugin's bundled server.
   `held_usd` with `payment_status: "pending"` has very likely already moved
   and is the normal outcome of a successful paid fetch, not a failure.
 - Never print or ask the human to paste a `wk_`, `wbt_`, or OAuth credential.
+- If a temporary connection returns unauthorized, it expired or was declined.
+  Run `/weft:setup THEIR_EMAIL` to replace it, or `/weft:setup oauth` to clear
+  it and return to existing-account OAuth after restart.
 
 ## Errors
 

@@ -29,7 +29,13 @@ jobs:
           test "$(sed -n '2p' skills/weft/SKILL.md)" = "name: weft"
           test "$(sed -n '2p' commands/balance.md)" = "description: Check the Weft wallet balance and spending policy"
           test "$(sed -n '2p' commands/find-api.md)" = "description: Find paid APIs and data endpoints for a task via Weft search"
+          test "$(sed -n '2p' commands/setup.md)" = "description: Connect the Weft plugin with an existing or temporary account"
           test "$(jq -r '.mcpServers.weft.url' .mcp.json)" = "https://weft.network/mcp"
+          test "$(jq -r '.version' .claude-plugin/plugin.json)" = "$(jq -r '.plugins[0].version' .claude-plugin/marketplace.json)"
+          test -x scripts/bootstrap.sh
+          test -x scripts/mcp-headers.sh
+          test -x tests/plugin_test.sh
+          bash tests/plugin_test.sh
       - name: Check Markdown links
         uses: lycheeverse/lychee-action@v2
         with:
