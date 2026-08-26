@@ -12,12 +12,15 @@ Search the agent web for paid endpoints matching: $ARGUMENTS
    and one line on what it returns.
 3. Recommend one result and say why. Quote its exact price and the exact
    `max_cost_usd` ceiling you propose.
-4. Ask the user to approve that ceiling before paying. On approval, call
+4. Call `weft_balance`. Abort and tell the user if the balance or the
+   remaining transaction, daily, or weekly policy headroom is below the
+   proposed ceiling.
+5. Ask the user to approve that ceiling before paying. On approval, call
    `weft_fetch` on the result URL with that exact ceiling, passing `search_id`,
    `operation_id`, and `access_method_id` from the search response for
    attribution. If the live challenge is higher, stop and ask again with the
    new ceiling.
-5. Summarize what came back and what it cost (`paid_usd + held_usd`).
+6. Summarize what came back and what it cost (`paid_usd + held_usd`).
 
 Never guess endpoint paths — only fetch URLs returned by `weft_search`. If no
 result fits, say so instead of falling back to scraping.
