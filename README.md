@@ -14,7 +14,7 @@ x402/MPP endpoint from your Weft wallet — without leaving the conversation.
 | MCP connector | bundled | Points at the hosted Weft MCP server (`https://weft.network/mcp`) |
 
 The `weft` Skill is vendored byte-identical from
-[weft-labs/skills](https://github.com/weft-labs/skills) at the commit pinned
+[weftlabs/skills](https://github.com/weftlabs/skills) at the commit pinned
 in [`SKILLS_REF`](SKILLS_REF); CI fails on any drift. To update it, copy
 `skills/weft/` from the new upstream commit and set that SHA in `SKILLS_REF`.
 Plugin-specific setup guidance lives in `commands/setup.md` and this README,
@@ -31,7 +31,7 @@ From a marketplace (once listed in the Anthropic community marketplace):
 Or directly from this repo:
 
 ```
-/plugin marketplace add weft-labs/weft-claude-plugin
+/plugin marketplace add weftlabs/weft-claude-plugin
 /plugin install weft@weft-labs
 ```
 
