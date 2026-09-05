@@ -8,15 +8,16 @@ x402/MPP endpoint from your Weft wallet — without leaving the conversation.
 | Component | Invocation | Purpose |
 |---|---|---|
 | Skill `weft` | model-invoked | Teaches Claude the balance → search → paid-fetch loop, receipt reading, and error handling |
+| Skill `weft-setup` | model-invoked | Connects an existing account or starts the temporary-account claim flow |
 | Command `/weft:balance` | `/weft:balance` | Wallet balance + spending-policy snapshot |
 | Command `/weft:find-api` | `/weft:find-api <need>` | Discover paid endpoints for a task, then fetch with your approval |
 | Command `/weft:setup` | `/weft:setup <email\|oauth>` | Create a temporary account or return to existing-account OAuth |
 | MCP connector | bundled | Points at the hosted Weft MCP server (`https://weft.network/mcp`) |
 
-The `weft` Skill is vendored byte-identical from
+The `weft` and `weft-setup` Skills are vendored byte-identical from
 [weftlabs/skills](https://github.com/weftlabs/skills) at the commit pinned
-in [`SKILLS_REF`](SKILLS_REF); CI fails on any drift. To update it, copy
-`skills/weft/` from the new upstream commit and set that SHA in `SKILLS_REF`.
+in [`SKILLS_REF`](SKILLS_REF); CI fails on any drift. To update them, copy
+both skill directories from the new upstream commit and set that SHA in `SKILLS_REF`.
 Plugin-specific setup guidance lives in `commands/setup.md` and this README,
 never inside `skills/weft/`.
 

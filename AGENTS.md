@@ -5,8 +5,9 @@ setup, validation and releases.
 
 - `.claude-plugin/` owns plugin metadata; `commands/` owns plugin-specific
   workflows; `.mcp.json` owns the bundled MCP connection.
-- `skills/weft/` is a byte-identical upstream mirror pinned by `SKILLS_REF`.
-  Change the canonical skills repo first; do not patch the vendored mirror.
+- `skills/weft/` and `skills/weft-setup/` are byte-identical upstream mirrors
+  pinned by `SKILLS_REF`. Change the canonical skills repo first; do not patch
+  the vendored mirrors.
 - Run `bash tests/plugin_test.sh` for plugin behavior changes. README owns the
   strict plugin validation and release procedure.
 - Keep temporary credentials in private plugin data, never tracked files.
