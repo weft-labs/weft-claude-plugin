@@ -14,13 +14,13 @@ flag.
 ## Install
 
 ```sh
-npm install -g @weft-labs/cli
+npm install -g @weftlabs/cli
 ```
 
 Zero-install equivalent for any command below:
 
 ```sh
-npx --package @weft-labs/cli weft --help
+npx --package @weftlabs/cli weft --help
 ```
 
 ## Commands
@@ -65,8 +65,9 @@ weft auth status
 # 5. After approval the stored credential is promoted in place.
 weft me
 
-# 6. A new wallet holds nothing. Ask the human to fund it before any
-#    paid fetch.
+# 6. The balance is the truth: a new wallet holds at most a one-time
+#    signup grant. To add money, send the human to
+#    https://weft.network/dashboard/wallet.
 weft balance
 ```
 
