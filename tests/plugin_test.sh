@@ -56,4 +56,20 @@ if "$root/scripts/bootstrap.sh" 'bad"email@example.com' "$data_dir" >/dev/null 2
   exit 1
 fi
 
+assert_onboarding_copy() {
+  copy=$(tr '\n' ' ' < "$1")
+  printf '%s' "$copy" | grep -qi 'open the claim email, verify the address'
+  printf '%s' "$copy" | grep -q 'one-time signup grant'
+  printf '%s' "$copy" | grep -q 'call `weft_balance`; the balance is the truth'
+  printf '%s' "$copy" | grep -qi 'do not ask the human to top up the wallet'
+}
+
+assert_onboarding_copy "$root/README.md"
+assert_onboarding_copy "$root/commands/setup.md"
+if grep -Eiq 'no promotional balance|must fund|fund (it|the|your) wallet|top up (the|your) wallet before' \
+  "$root/README.md" "$root/commands/setup.md"; then
+  printf '%s\n' "plugin onboarding copy asks for funding instead of email verification" >&2
+  exit 1
+fi
+
 printf '%s\n' "plugin tests passed"

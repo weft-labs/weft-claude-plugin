@@ -28,12 +28,14 @@ all other input. Run the bootstrap script with the exact validated email:
 The script stores the `wbt_` credential with mode 0600 and prints only safe
 claim metadata. Never read, print, paste, or commit the credential file. Never
 ask for a password or ask the human to paste a `wk_`, `wbt_`, or OAuth
-credential. Tell the user to claim the email and restart Claude Code. After
-restart, call `weft_connection_status`: search works while pending; balance
-and fetch start on the same connection after claim.
+credential. Tell the user to open the claim email, verify the address, approve
+the connection, and restart Claude Code. Weft applies the one-time signup grant
+after verification. After restart, call `weft_connection_status`: search works
+while pending; balance and fetch start on the same connection after claim. Then
+call `weft_balance`; the balance is the truth.
 
-A new account gets a wallet but no promotional balance, free credit, or
-subsidy. The human must fund the wallet before the first paid fetch.
+During onboarding, do not ask the human to top up the wallet or promise any
+additional promotional balance.
 
 Troubleshooting:
 

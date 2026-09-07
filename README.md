@@ -56,14 +56,15 @@ No account yet:
 ```
 
 The command creates a 30-minute temporary connection, stores its credential in
-Claude's private plugin-data directory, and prints only claim metadata. Claim
-the email and restart Claude Code. Search works before claim; the same
-connection gains balance and fetch after claim.
+Claude's private plugin-data directory, and prints only claim metadata. Open the
+claim email, verify the address, approve the connection, and restart Claude
+Code. Weft applies the one-time signup grant after verification. Search works
+before claim; the same connection gains balance and fetch after claim. Then
+call `weft_balance`; the balance is the truth.
 
-Temporary-header support requires Claude Code 2.1.195 or later. A new account
-gets a buyer wallet with no promotional balance, free credit, or subsidy, so
-fund it before the first paid fetch. API reference:
-[weft.network/docs](https://weft.network/docs).
+Temporary-header support requires Claude Code 2.1.195 or later. During
+onboarding, do not ask the human to top up the wallet or promise any additional
+promotional balance. API reference: [weft.network/docs](https://weft.network/docs).
 
 ## Cost discipline
 
